@@ -1,13 +1,19 @@
 package com.ecommerce.amazon.service.impl;
 
 import com.ecommerce.amazon.model.User;
+import com.ecommerce.amazon.repository.UserRepository;
 import com.ecommerce.amazon.repository.impl.UserRepositoryImpl;
 import com.ecommerce.amazon.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class UserServiceImpl implements UserService {
-UserRepositoryImpl userRepository =new UserRepositoryImpl();
+    @Autowired
+    UserRepository userRepository;
+//UserRepositoryImpl userRepository =new UserRepositoryImpl();
 
     @Override
     public List<User> getAllUser() {

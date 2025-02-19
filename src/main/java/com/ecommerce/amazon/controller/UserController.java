@@ -4,6 +4,7 @@ package com.ecommerce.amazon.controller;
 import com.ecommerce.amazon.model.User;
 import com.ecommerce.amazon.service.UserService;
 import com.ecommerce.amazon.service.impl.UserServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -11,7 +12,9 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1/user")
 public class UserController {
-    UserServiceImpl userService = new UserServiceImpl();
+   // UserServiceImpl userService = new UserServiceImpl();
+@Autowired
+UserService userService;
 
     @GetMapping("/getalluser")
     public List<User> getAllUser() {

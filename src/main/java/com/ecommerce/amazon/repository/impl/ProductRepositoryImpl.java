@@ -2,10 +2,12 @@ package com.ecommerce.amazon.repository.impl;
 
 import com.ecommerce.amazon.model.Product;
 import com.ecommerce.amazon.repository.ProductRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Repository
 public class ProductRepositoryImpl implements ProductRepository {
     private List<Product> products=new ArrayList<>();
 
