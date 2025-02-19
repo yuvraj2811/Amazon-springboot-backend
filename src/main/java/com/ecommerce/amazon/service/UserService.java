@@ -10,5 +10,7 @@ public interface UserService {
     public void creatUser(User user);
      public void deletUser(Long id);
     public void updateUser(long id,User user);
+     public User getUserByName(String userName);
 
+     public User getUserByMobile(String userMobile);
 }

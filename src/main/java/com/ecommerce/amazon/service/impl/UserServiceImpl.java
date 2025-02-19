@@ -35,5 +35,15 @@ public class UserServiceImpl implements UserService {
         userRepository.updateUser(id,user);
     }
 
+    @Override
+    public User getUserByName(String userName) {
+        return userRepository.getUserByName(userName);
+    }
+
+    @Override
+    public User getUserByMobile(String userMobile) {
+        return userRepository.getUserByMobile(userMobile);
+    }
+
 
 }

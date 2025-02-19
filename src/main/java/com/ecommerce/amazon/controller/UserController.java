@@ -39,4 +39,13 @@ UserService userService;
         return "Detel Successfully";
     }
 
+    @GetMapping("name")
+    public User getUserByName(@RequestParam String userName){
+        return userService.getUserByName(userName);
+    }
+
+    @GetMapping("userMobile")
+    public User getUserByMobile(String userMobile){
+        return userService.getUserByMobile(userMobile);
+    }
 }

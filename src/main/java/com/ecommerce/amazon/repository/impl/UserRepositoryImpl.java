@@ -47,5 +47,25 @@ public class UserRepositoryImpl implements UserRepository {
         }
     }
 
+    @Override
+    public User getUserByName(String userName) {
+        for (int i=0;i<users.size();i++){
+            if (users.get(i).getUserName().equals(userName)){
+                return users.get(i);
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public User getUserByMobile(String userMobile) {
+        for (int i=0;i<users.size();i++){
+            if(users.get(i).getUserMobile().equals(userMobile)){
+                return users.get(i);
+            }
+        }
+        return null;
+    }
+
 
 }

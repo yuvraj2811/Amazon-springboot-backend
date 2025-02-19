@@ -14,4 +14,8 @@ public void creatUser(User user);
 public  void updateUser(Long userId,User user);
 
 public void deletUser(Long userId);
+
+public User getUserByName(String userName);
+
+public User getUserByMobile(String userMobile);
 }
