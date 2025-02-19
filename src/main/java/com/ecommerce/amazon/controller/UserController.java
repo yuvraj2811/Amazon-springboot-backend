@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/api/v1/user")
 public class UserController {
     UserServiceImpl userService = new UserServiceImpl();
 
@@ -32,6 +32,7 @@ public class UserController {
 
     @DeleteMapping("/{userId}")
     public String deletUser(@PathVariable Long userId){
+        userService.deletUser(userId);
         return "Detel Successfully";
     }
 
