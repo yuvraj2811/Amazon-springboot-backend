@@ -28,24 +28,30 @@ UserService userService;
     }
 
     @PutMapping("/{userId}")
-    public String updateUser(@PathVariable Long userId,@RequestBody User user){
+    public String updateUser(@PathVariable String userId,@RequestBody User user){
         userService.updateUser(userId,user);
         return "Update Successfully";
     }
 
+    @GetMapping("/{userId}")
+    public User getByUserId(@PathVariable String userId){
+        return userService.getByUserId(userId);
+    }
+
+
     @DeleteMapping("/{userId}")
-    public String deletUser(@PathVariable Long userId){
+    public String deletUser(@PathVariable String userId){
         userService.deletUser(userId);
         return "Detel Successfully";
     }
 
-    @GetMapping("name")
+    @GetMapping("/name")
     public User getUserByName(@RequestParam String userName){
         return userService.getUserByName(userName);
     }
 
-    @GetMapping("userMobile")
-    public User getUserByMobile(String userMobile){
+    @GetMapping("/userMobile")
+    public User getUserByMobile(@RequestParam String userMobile){
         return userService.getUserByMobile(userMobile);
     }
 }

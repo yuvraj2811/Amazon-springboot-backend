@@ -15,21 +15,29 @@ public class CarouselServiceImpl implements CarouselService {
 
     @Override
     public List<Carousel> getAllCarousel() {
-        return carouselRepository.getAllCarousel();
+        return carouselRepository.findAll();
     }
 
     @Override
     public void creatCarousel(Carousel carousel) {
-         carouselRepository.creatCarousel(carousel);
+         carouselRepository.save(carousel);
     }
 
     @Override
-    public void updateCarousel(int carouselId, Carousel carousel) {
-           carouselRepository.updateCarousel(carouselId,carousel);
+    public void updateCarousel(String carouselId, Carousel carousel) {
+           Carousel updateToCarousel = getCarouselById(carouselId);
+           if (updateToCarousel.getCarouselId()!=null){
+               carouselRepository.save(carousel);
+           }
     }
 
     @Override
-    public void deletCarousel(int carousel) {
-        carouselRepository.deletCarousel(carousel);
+    public void deletCarousel(String carouselId) {
+        carouselRepository.deleteById(carouselId);
+    }
+
+    @Override
+    public Carousel getCarouselById(String carouselId) {
+        return  carouselRepository.findById(carouselId).orElse(new Carousel());
     }
 }

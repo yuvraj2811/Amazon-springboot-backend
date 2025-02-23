@@ -18,7 +18,7 @@ public class ProductController {
     ProductService productService;
 
 
- @GetMapping()
+ @GetMapping("/all")
     public List<Product>getAllProduct(){
      return productService.getAllProduct();
  }
@@ -30,14 +30,24 @@ public class ProductController {
  }
 
  @PutMapping("/{productId}")
-    public String updateProduct( @PathVariable int productId,Product product){
+    public String updateProduct( @PathVariable String productId,Product product){
      productService.updateProduct(productId,product);
      return "Update Successfully";
  }
 
  @DeleteMapping("/{productId}")
-    public String deletProduct( @PathVariable int productId){
+    public String deletProduct( @PathVariable String productId){
      productService.deletProduct(productId);
      return "Delete successfully";
+ }
+
+ @GetMapping("/{productId}")
+    public Product getProductById(String productId){
+     return productService.getProductById(productId);
+ }
+
+ @GetMapping("/productName")
+    public Product getProductByName(@RequestParam String productName){
+     return productService.getProductByName(productName);
  }
 }

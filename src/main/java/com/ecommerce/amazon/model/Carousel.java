@@ -1,24 +1,29 @@
 package com.ecommerce.amazon.model;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document
 public class Carousel {
-    private int carouselId;
+    @Id
+    private String carouselId;
     private String carouselName;
     private int carouselSlides;
 
     public Carousel() {
     }
 
-    public Carousel(int carouselId, String carouselName, int carouselSlides) {
+    public Carousel(String carouselId, String carouselName, int carouselSlides) {
         this.carouselId = carouselId;
         this.carouselName = carouselName;
         this.carouselSlides = carouselSlides;
     }
 
-    public int getCarouselId() {
+    public String getCarouselId() {
         return carouselId;
     }
 
-    public void setCarouselId(int carouselId) {
+    public void setCarouselId(String carouselId) {
         this.carouselId = carouselId;
     }
 

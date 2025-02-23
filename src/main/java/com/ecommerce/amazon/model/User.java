@@ -1,7 +1,12 @@
 package com.ecommerce.amazon.model;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document
 public class User {
-    private  long userId;
+    @Id
+    private  String userId;
     private  String userName;
     private  String userEmail;
     private String userMobile;
@@ -9,18 +14,18 @@ public class User {
     public User() {
     }
 
-    public User(long userId, String userName, String userEmail, String userMobile) {
+    public User(String userId, String userName, String userEmail, String userMobile) {
         this.userId = userId;
         this.userName = userName;
         this.userEmail = userEmail;
         this.userMobile = userMobile;
     }
 
-    public long getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(long userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 

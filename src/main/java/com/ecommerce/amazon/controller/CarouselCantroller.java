@@ -16,7 +16,7 @@ public class CarouselCantroller {
     @Autowired
     CarouselService carouselService;
 
-    @GetMapping
+    @GetMapping("/all")
     public List<Carousel>getAllCarousel(){
 
         return carouselService.getAllCarousel();
@@ -29,15 +29,20 @@ public class CarouselCantroller {
     }
 
     @PutMapping("/{carousalId}")
-    public String updateCarousel(@PathVariable int carouselId,@RequestBody Carousel carousel){
+    public String updateCarousel(@PathVariable String carouselId,@RequestBody Carousel carousel){
        carouselService.updateCarousel(carouselId,carousel);
         return "Update successfully";
     }
 
     @DeleteMapping("/{carouselId}")
-    public String deletCarousel(int carouselId){
+    public String deletCarousel(String carouselId){
        carouselService.deletCarousel(carouselId);
         return "Delet Successfully";
+    }
+
+    @GetMapping("/{carouselId}")
+    public Carousel getCarouselById(@PathVariable String carouselId){
+        return carouselService.getCarouselById(carouselId);
     }
 
 }

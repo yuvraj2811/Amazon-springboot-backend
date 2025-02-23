@@ -2,7 +2,6 @@ package com.ecommerce.amazon.service.impl;
 
 import com.ecommerce.amazon.model.User;
 import com.ecommerce.amazon.repository.UserRepository;
-import com.ecommerce.amazon.repository.impl.UserRepositoryImpl;
 import com.ecommerce.amazon.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,32 +16,46 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<User> getAllUser() {
-        return userRepository.getAllUser() ;
+        return userRepository.findAll() ;
     }
 
     @Override
     public void creatUser(User user) {
-        userRepository.creatUser(user);
+        userRepository.save(user);
     }
 
     @Override
-    public void deletUser(Long userId) {
-        userRepository.deletUser(userId);
+    public void deletUser(String userId) {
+        userRepository.deleteById(userId);
     }
 
     @Override
-    public void updateUser(long id, User user) {
-        userRepository.updateUser(id,user);
+    public void updateUser(String userId, User user) {
+       // userRepository.save(user);
+  User updateToUser = getByUserId(userId);
+  if (updateToUser.getUserId()!=null){
+//      updateToUser.setUserId(user.getUserId());
+//      updateToUser.setUserName(user.getUserName());
+//      updateToUser.setUserEmail(user.getUserEmail());
+//      updateToUser.setUserMobile(user.getUserMobile());
+      userRepository.save(user);
+  }
     }
 
     @Override
     public User getUserByName(String userName) {
-        return userRepository.getUserByName(userName);
+        return userRepository.findByUserName(userName);
     }
 
     @Override
-    public User getUserByMobile(String userMobile) {
-        return userRepository.getUserByMobile(userMobile);
+    public User getUserByMobile(String userMobile)
+    {
+        return userRepository.findByUserMobile(userMobile);
+    }
+
+    @Override
+    public User getByUserId(String userId) {
+        return userRepository.findById(userId).orElse(new User());
     }
 
 

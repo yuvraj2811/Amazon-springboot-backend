@@ -14,7 +14,7 @@ public class CategoryController {
     @Autowired
     CategoryService categoryService;
 
-    @GetMapping
+    @GetMapping("all")
     public List<Category>getAllCategory(){
         return categoryService.getAllCategory();
     }
@@ -26,15 +26,26 @@ public class CategoryController {
     }
 
     @PutMapping("/{categoryId}")
-    public  String updateCategory(@PathVariable int categoryId,@RequestBody Category category){
+    public  String updateCategory(@PathVariable String categoryId,@RequestBody Category category){
        categoryService.updateCategory(categoryId,category);
         return "Update Successfully";
     }
 
     @DeleteMapping("/{categoryId}")
-    public  String deletCategory(@PathVariable int categoryId){
+    public  String deletCategory(@PathVariable String categoryId){
       categoryService.deletCategory(categoryId);
         return "Delet Successfully";
+    }
+
+    @GetMapping("/{categoryId}")
+    public Category getCategoryById(@PathVariable String categoryId){
+
+        return categoryService.getCatgoryById(categoryId);
+    }
+
+    @GetMapping("/categoryName")
+    public  Category getCategoryByName(@RequestParam String categoryName){
+        return categoryService.getCategoryByName(categoryName);
     }
 
 }
