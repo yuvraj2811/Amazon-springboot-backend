@@ -1,5 +1,6 @@
 package com.ecommerce.amazon.service.impl;
 
+import com.ecommerce.amazon.exception.ResourceNotFoundException;
 import com.ecommerce.amazon.model.User;
 import com.ecommerce.amazon.repository.UserRepository;
 import com.ecommerce.amazon.service.UserService;
@@ -44,18 +45,18 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getUserByName(String userName) {
-        return userRepository.findByUserName(userName);
+        return userRepository.findByUserName(userName).orElseThrow(()->new ResourceNotFoundException("User is not found"));
     }
 
     @Override
     public User getUserByMobile(String userMobile)
     {
-        return userRepository.findByUserMobile(userMobile);
+        return userRepository.findByUserMobile(userMobile).orElseThrow(()->new ResourceNotFoundException("User is not found"));
     }
 
     @Override
     public User getByUserId(String userId) {
-        return userRepository.findById(userId).orElse(new User());
+        return userRepository.findById(userId).orElseThrow(()->new ResourceNotFoundException("User is not found "));
     }
 
 

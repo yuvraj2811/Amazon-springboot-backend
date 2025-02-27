@@ -5,6 +5,7 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public interface UserRepository extends MongoRepository<User,String> {
 
@@ -19,6 +20,6 @@ public interface UserRepository extends MongoRepository<User,String> {
 //public User getUserByName(String userName);
 //
 //public User getUserByMobile(String userMobile);
-    public User findByUserName(String userName);
-    public  User findByUserMobile(String userMobile);
+    public Optional<User> findByUserName(String userName);
+    public  Optional<User> findByUserMobile(String userMobile);//property name search
 }

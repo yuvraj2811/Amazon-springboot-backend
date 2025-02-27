@@ -1,5 +1,6 @@
 package com.ecommerce.amazon.service.impl;
 
+import com.ecommerce.amazon.exception.ResourceNotFoundException;
 import com.ecommerce.amazon.model.Product;
 import com.ecommerce.amazon.repository.ProductRepository;
 
@@ -11,9 +12,10 @@ import java.util.List;
 
 @Service
 public class ProductServiceImpl implements ProductService {
-   // ProductRepositoryImpl productRepository=new ProductRepositoryImpl();
-@Autowired
+    // ProductRepositoryImpl productRepository=new ProductRepositoryImpl();
+    @Autowired
     ProductRepository productRepository;
+
     @Override
     public List<Product> getAllProduct() {
         return productRepository.findAll();
@@ -21,20 +23,20 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public void creatProduct(Product product) {
-      productRepository.save(product);
+        productRepository.save(product);
     }
 
     @Override
     public void updateProduct(String productId, Product product) {
-     Product updateToProduct= getProductById(productId);
-     if (updateToProduct.getProductId()!=null){
-         productRepository.save(product);
-     }
+        Product updateToProduct = getProductById(productId);
+        if (updateToProduct.getProductId() != null) {
+            productRepository.save(product);
+        }
     }
 
     @Override
     public void deletProduct(String productId) {
-     productRepository.deleteById(productId);
+        productRepository.deleteById(productId);
     }
 
     @Override
@@ -44,6 +46,8 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product getProductByName(String productName) {
-        return productRepository.findByProductName(productName);
+
+        return productRepository.findByProductName(productName).orElseThrow(()->new ResourceNotFoundException("Product not found"));
     }
+
 }
